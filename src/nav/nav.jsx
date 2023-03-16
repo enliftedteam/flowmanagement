@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import './Nav.css';
+import './nav.css';
 import HomeIcon from '@mui/icons-material/Home';
 // MUI imports below
 import Box from '@mui/material/Box';
@@ -30,19 +30,20 @@ export default function Nav({showButtons = false}) {
 
 
   return (
+    
     <div className="nav">
       <Link to="/">
         <img
           className="nav-logo"
           src="../public/images/footer-logo.png"
           alt="Logo"
-          style={{width: '175px', height: '87px'}}
+          style={{width: '100px', height: '50px'}}
         />
       </Link>
 
       {/* ////////////////Save&PublishButton%%%%%TOP%%%%%%%%%%%////////////// */}
                   {/* ////conditionalRenderButtons///// */}
-      <Box sx={{flexGrow: 15, marginLeft: '-200px', marginRight: '-20px'}}>
+      <Box sx={{flexGrow: 15, marginLeft: '-200px', marginRight: '25px', width: '100%'}}>
         <div
           style={{
             display: 'flex',
@@ -122,25 +123,18 @@ export default function Nav({showButtons = false}) {
             Home
           </Link>
         </MenuItem>
-        {/* /////////////////////////// */}
+
         <MenuItem onClick={handleClose}>
           <AnnouncementIcon sx={{mr: 1}} />
-          <div
-            onClick={() =>
-              window.open('https://enlifted.me/contact/', '_blank')
-            }
+          <Link
+            to="https://enlifted.me/contact/"
             className="navLink"
-            style={{
-              color: 'black',
-              display: 'flex',
-              alignItems: 'center',
-              cursor: 'pointer',
-            }}>
+            style={{color: 'black', width: 80, maxWidth: '100%'}}>
             Contact Us
-          </div>
+          </Link>
         </MenuItem>
 
-        {/* /////////////////////////// */}
+
         <MenuItem onClick={handleClose}>
           <HelpOutlineIcon sx={{mr: 1}} />
           <Link
@@ -152,6 +146,7 @@ export default function Nav({showButtons = false}) {
         </MenuItem>
       </Menu>
     </div>
+    
   );
 }
 

@@ -21,7 +21,7 @@ import {LoginPage} from './routes/login';
 export default function App() {
   return (
     <AuthProvider>
-      <Nav/>
+      {/* <Nav/> */}
       <Provider store={store}>
       <Routes>
         <Route

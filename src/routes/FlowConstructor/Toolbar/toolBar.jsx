@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { styled, useTheme } from '@mui/material/styles';
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,25 +29,24 @@ import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 
 const drawerWidth = 240;
 const options = [
-                {
-                  Id: 1,
-                  Name: 'Text Box',
-                  Icon: <TextSnippetOutlinedIcon fontSize ='large'/>
-                },
-                {
-                  Id: 1,
-                  Name: 'Text Input',
-                  Icon: <AssignmentOutlinedIcon fontSize ='large'/>
-                },
-                {
-                  Id: 1,
-                  Name: 'Word Input',
-                  Icon: <TextsmsOutlinedIcon fontSize ='large'/>
-                }
-                ]
+  {
+    Id: 1,
+    Name: 'Text Box',
+    Icon: <TextSnippetOutlinedIcon fontSize="large" />,
+  },
+  {
+    Id: 1,
+    Name: 'Text Input',
+    Icon: <AssignmentOutlinedIcon fontSize="large" />,
+  },
+  {
+    Id: 1,
+    Name: 'Word Input',
+    Icon: <TextsmsOutlinedIcon fontSize="large" />,
+  },
+];
 
-
-const DrawerHeader = styled('div')(({ theme }) => ({
+const DrawerHeader = styled('div')(({theme}) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
@@ -55,11 +54,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-
-
-
-
-
 
 export default function ToolBar() {
   const theme = useTheme();
@@ -74,9 +68,7 @@ export default function ToolBar() {
   };
 
   return (
-    <Box >
-
-
+    <Box>
       <Toolbar>
         <IconButton
           color="inherit"
@@ -85,18 +77,19 @@ export default function ToolBar() {
           edge="start"
           sx={{ mr: 2, ...(open && { display: 'none' }) }}
         >
-          <TextFieldsIcon fontSize='large' />
+          <TextFieldsIcon fontSize="large" />
         </IconButton>
       </Toolbar>
 
-
       <Drawer
+        className="drawer-back"
         sx={{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            top: '100px', // Adjust the 'top' property as needed
           },
         }}
         variant="persistent"
@@ -104,11 +97,13 @@ export default function ToolBar() {
         open={open}
       >
         <DrawerHeader>
-          <Typography>
-            Tool Bar
-          </Typography>
+          <Typography>Tool Bar</Typography>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </DrawerHeader>
 
@@ -118,16 +113,13 @@ export default function ToolBar() {
           {options.map((key) => (
             <ListItem key={key.Id} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {key.Icon}
-                </ListItemIcon>
+                <ListItemIcon>{key.Icon}</ListItemIcon>
                 <ListItemText primary={key.Name} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
-
     </Box>
-  )
+  );
 }
