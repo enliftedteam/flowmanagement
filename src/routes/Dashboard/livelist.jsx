@@ -10,7 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import BlurCircularIcon from '@mui/icons-material/BlurCircular';
 import { Box } from '@mui/material';
-import { liveFlows } from '../../Data';
+
 
 import {useState, useEffect} from 'react';
 import axios from 'axios';
@@ -34,10 +34,6 @@ export default function LiveList() {
     
         fetchData();
       }, []);
-
-
-
-const arrToShow = liveFlows.slice(Math.min(liveFlows.length - 10, 0))
 
     return (
         <Box alignItems='stack'>

@@ -45,6 +45,7 @@ export default function Nav() {
             alignItems: 'center',
             justifyContent: 'flex-end',
             gap: '10px',
+            // marginLeft: '1000px',
           }}>
           {isLoggedIn ? (
             <button

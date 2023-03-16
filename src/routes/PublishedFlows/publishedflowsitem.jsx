@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 
-export default function ArchivesItem({id, name, version, published, dateMade}) {
+export default function PublishedFlowsItem({id, name, version, published, dateMade}) {
   console.log('this is published from archivesitem', published);
   return (
      <Box 
