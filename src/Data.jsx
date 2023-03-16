@@ -74,4 +74,27 @@ const liveFlows = [
     },
 ]
 
-export {liveFlows};
+import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
+import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
+import FormatBoldOutlinedIcon from '@mui/icons-material/FormatBoldOutlined';
+
+const options = [
+                {
+                  Id: 1,
+                  Name: 'Text Box',
+                  Icon: <TextSnippetOutlinedIcon fontSize ='large'/>
+                },
+                {
+                  Id: 2,
+                  Name: 'Text Input',
+                  Icon: <AssignmentOutlinedIcon fontSize ='large'/>
+                },
+                {
+                  Id: 3,
+                  Name: 'Word Input',
+                  Icon: <TextsmsOutlinedIcon fontSize ='large'/>
+                }
+                ]
+
+export {liveFlows, options};
