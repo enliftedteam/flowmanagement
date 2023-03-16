@@ -1,8 +1,6 @@
 import React from 'react'
-
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
@@ -14,9 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
 import TextField from '@mui/material/TextField';
-
 export default function AddStep() {
 
   // State  of  the text and the associated inputs are stored in a reducer.
@@ -39,7 +35,6 @@ export default function AddStep() {
     setInputFields(data)
 
   }
-  
   const reducerTest = useSelector((store) => store.flowStepReducer)
   const dispatch = useDispatch();
   // State will also have to represent the previous flow steps to be called on when moving backwards

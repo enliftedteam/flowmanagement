@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import './Nav.css';
+import './nav.css';
 import HomeIcon from '@mui/icons-material/Home';
 // MUI imports below
 import Box from '@mui/material/Box';
@@ -10,10 +10,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-
+import {useLocation} from 'react-router-dom'
 //menu drop down
 
-export default function Nav() {
+export default function Nav({showButtons = false}) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = event => {
@@ -26,18 +26,24 @@ export default function Nav() {
   //base off use is logged in or not.
   //we will need to hook this up to the login component.
   const isLoggedIn = true;
+  const location = useLocation();
+
+
   return (
+    
     <div className="nav">
       <Link to="/">
         <img
           className="nav-logo"
           src="../public/images/footer-logo.png"
           alt="Logo"
-          style={{width: '175px', height: '87px'}}
+          style={{width: '100px', height: '50px'}}
         />
       </Link>
 
-      <Box sx={{flexGrow: 1, marginRight: 'px'}}>
+      {/* ////////////////Save&PublishButton%%%%%TOP%%%%%%%%%%%////////////// */}
+                  {/* ////conditionalRenderButtons///// */}
+      <Box sx={{flexGrow: 15, marginLeft: '-200px', marginRight: '25px', width: '100%'}}>
         <div
           style={{
             display: 'flex',
@@ -47,37 +53,51 @@ export default function Nav() {
             gap: '10px',
             // marginLeft: '1000px',
           }}>
-          {isLoggedIn ? (
-            <button
-              style={{
-                padding: '10px 20px',
-                borderRadius: '20px',
-                background: '#151D92',
-                color: '#fff',
-                border: 'none',
-              }}>
-              Save
-            </button>
-          ) : (
-            <></>
-          )}
-          {isLoggedIn ? (
-            <button
-              style={{
-                padding: '10px 20px',
-                borderRadius: '20px',
-                background: '#008CBA',
-                color: '#fff',
-                border: 'none',
-              }}>
-              Publish
-            </button>
-          ) : (
-            <h3></h3>
-          )}
-        </div>
+          {isLoggedIn && location.pathname === '/Constructor' ? (
+      <>
+        <button
+          className="nav-save-button"
+          onMouseOver={e =>
+            (e.currentTarget.style.backgroundColor = '#3530e9')
+          }
+          onMouseOut={e =>
+            (e.currentTarget.style.backgroundColor = '#151D92')
+          }
+          style={{
+            padding: '10px 20px',
+            borderRadius: '20px',
+            background: '#151D92',
+            color: '#fff',
+            border: 'none',
+          }}
+        >
+          Save
+        </button>
+        <button
+          className="nav-publish-button"
+          onMouseOver={e =>
+            (e.currentTarget.style.backgroundColor = '#3530e9')
+          }
+          onMouseOut={e =>
+            (e.currentTarget.style.backgroundColor = '#008CBA')
+          }
+          style={{
+            padding: '10px 20px',
+            borderRadius: '20px',
+            background: '#008CBA',
+            color: '#fff',
+            border: 'none',
+          }}
+        >
+          Publish
+        </button>
+      </>
+    ) : null}
+  </div>
       </Box>
+      {/* ////////////////Save&PublishButton%%BOTTOM%%////////////// */}
 
+{/* //Menu DropDownButton/ */}
       <Box sx={{flexGrow: 1}}></Box>
       <IconButton
         size="large"
@@ -104,13 +124,18 @@ export default function Nav() {
             Home
           </Link>
         </MenuItem>
-        <MenuItem
-          onClick={() =>
-            (window.location.href = 'https://enlifted.me/contact/')
-          }>
+
+        <MenuItem onClick={handleClose}>
           <AnnouncementIcon sx={{mr: 1}} />
-          Contact Us
+          <Link
+            to="https://enlifted.me/contact/"
+            className="navLink"
+            style={{color: 'black', width: 80, maxWidth: '100%'}}>
+            Contact Us
+          </Link>
         </MenuItem>
+
+
         <MenuItem onClick={handleClose}>
           <HelpOutlineIcon sx={{mr: 1}} />
           <Link
@@ -122,5 +147,106 @@ export default function Nav() {
         </MenuItem>
       </Menu>
     </div>
+    
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////old with one conditional button
+      // {/* ////////////////Save&PublishButton%%%%%TOP%%%%%%%%%%%////////////// */}
+      // <Box sx={{flexGrow: 15, marginLeft: '-200px', marginRight: '-20px'}}>
+      //   <div
+      //     style={{
+      //       display: 'flex',
+      //       flexDirection: 'row',
+      //       alignItems: 'center',
+      //       justifyContent: 'flex-end',
+      //       gap: '10px',
+      //     }}>
+      //     {isLoggedIn ? (
+      //       <button
+      //         className="nav-save-button"
+      //         onMouseOver={e =>
+      //           (e.currentTarget.style.backgroundColor = '#3530e9')
+      //         }
+      //         onMouseOut={e =>
+      //           (e.currentTarget.style.backgroundColor = '#151D92')
+      //         }
+      //         style={{
+      //           padding: '10px 20px',
+      //           borderRadius: '20px',
+      //           background: '#151D92',
+      //           color: '#fff',
+      //           border: 'none',
+      //         }}>
+      //         Save
+      //       </button>
+      //     ) : null  
+      //     ()}
+      //     {isLoggedIn  && location.pathname === '/Constructor' ? (
+      //       <button
+      //         className="nav-publish-button"
+      //         onMouseOver={e =>
+      //           (e.currentTarget.style.backgroundColor = '#3530e9')
+      //         }
+      //         onMouseOut={e =>
+      //           (e.currentTarget.style.backgroundColor = '#008CBA')
+      //         }
+      //         style={{
+      //           padding: '10px 20px',
+      //           borderRadius: '20px',
+      //           background: '#008CBA',
+      //           color: '#fff',
+      //           border: 'none',
+      //         }}>
+      //         Publish
+      //       </button>
+      //     ) : null}  
+      //     {/* // (<h3></h3>)} */}
+      //   </div>
+      // </Box>
+      // {/* ////////////////Save&PublishButton%%BOTTOM%%////////////// */}

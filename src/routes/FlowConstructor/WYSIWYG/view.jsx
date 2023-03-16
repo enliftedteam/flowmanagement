@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
+
 import { Box, Tooltip, Typography } from '@mui/material';
 import useReduxStore from '../../../Hooks/useReduxStore';
 import { useSelector } from 'react-redux';
+
 
 export default function View() {
   const store = useReduxStore();
@@ -10,6 +12,7 @@ export default function View() {
   const option = useSelector(store => store.optionsSelectReducer)
 
   return (
+
     <Box display='stack' textAlign='center'>
       <Box
 
@@ -98,5 +101,6 @@ export default function View() {
 
       </Box>
     </Box>
+
   )
 }

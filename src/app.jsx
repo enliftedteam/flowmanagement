@@ -21,7 +21,9 @@ import PublishedFlows from './routes/PublishedFlows/PublishedFlows';
 export default function App() {
   return (
     <AuthProvider>
+
       <Nav />
+
       <Provider store={store}>
         <Routes>
           <Route
