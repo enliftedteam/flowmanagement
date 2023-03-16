@@ -1,11 +1,9 @@
 import React, {version} from 'react';
-import ArchivesItem from './archivesitem';
-import {liveFlows} from '../../Data';
 import {Box, List, Typography} from '@mui/material';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-
-export default function ArchivesList() {
+import PublishedFlowsItem from './publishedflowsitem';
+export default function PublishedFlowsList() {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -29,9 +27,9 @@ export default function ArchivesList() {
       <List sx={{width: '100%'}}>
         {data &&
           data
-            .filter(flow => !flow.is_published)
+            .filter(flow => flow.is_published)
             .map(flow => (
-              <ArchivesItem
+              <PublishedFlowsItem
                 key={flow.id}
                 id={flow.id}
                 name={flow.title}

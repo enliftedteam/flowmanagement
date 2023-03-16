@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Dashboard() {
   const auth = useAuth();
   const navigate = useNavigate()
+
   const handleClickArchive = (e) => {
   e.preventDefault
   navigate('/View')
@@ -23,6 +24,10 @@ export default function Dashboard() {
   navigate('/Constructor')
   }
 
+  const handleClickLive = (e) => {
+    e.preventDefault
+    navigate('/Published')
+    }
 
   function handleSignOut() {
     auth.signout(() => { });
@@ -98,6 +103,7 @@ export default function Dashboard() {
         </Box>
 
         <Box
+        onClick={handleClickLive}
           gridColumn='span 11'
           gridRow='span 10'
           backgroundColor='#ffffff'

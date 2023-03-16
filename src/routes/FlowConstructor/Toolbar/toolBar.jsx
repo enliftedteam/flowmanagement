@@ -1,33 +1,27 @@
-import React from 'react';
 
-import {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {styled, useTheme} from '@mui/material/styles';
+import React from 'react'
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { styled, useTheme } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
+import { options } from '../../../Data';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
-import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 
 const drawerWidth = 240;
+
 const options = [
   {
     Id: 1,
@@ -47,6 +41,7 @@ const options = [
 ];
 
 const DrawerHeader = styled('div')(({theme}) => ({
+
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
@@ -55,14 +50,23 @@ const DrawerHeader = styled('div')(({theme}) => ({
   justifyContent: 'flex-end',
 }));
 
+
 export default function ToolBar() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+
+
+  const handleClicked = (event) => {
+    dispatch({
+      type: 'SET_OPTIONS_REDUCER',
+      payload: event
+    });
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -110,11 +114,18 @@ export default function ToolBar() {
         <Divider />
 
         <List>
-          {options.map((key) => (
-            <ListItem key={key.Id} disablePadding>
+          {options.map((opt) => (
+            <ListItem key={opt.Id} onClick={(e) => {handleClicked(opt.Id)}} disablePadding>
               <ListItemButton>
+
                 <ListItemIcon>{key.Icon}</ListItemIcon>
                 <ListItemText primary={key.Name} />
+
+                <ListItemIcon>
+                  {opt.Icon}
+                </ListItemIcon>
+                <ListItemText primary={opt.Name} />
+
               </ListItemButton>
             </ListItem>
           ))}

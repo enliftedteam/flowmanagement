@@ -51,6 +51,7 @@ export default function Nav({showButtons = false}) {
             alignItems: 'center',
             justifyContent: 'flex-end',
             gap: '10px',
+            // marginLeft: '1000px',
           }}>
           {isLoggedIn && location.pathname === '/Constructor' ? (
       <>

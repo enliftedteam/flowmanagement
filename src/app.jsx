@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import {
   Routes,
   Route,
@@ -16,44 +16,52 @@ import Dashboard from './routes/Dashboard/dashboard';
 import FlowConstructor from './routes/FlowConstructor/flowconstructor';
 import Nav from './nav/nav';
 import {LoginPage} from './routes/login';
-
+import PublishedFlows from './routes/PublishedFlows/PublishedFlows';
 
 export default function App() {
   return (
     <AuthProvider>
-      {/* <Nav/> */}
+
+      <Nav />
+
       <Provider store={store}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <Dashboard />
-            </RequireAuth>
-          }
-        />
-        <Route
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/View"
+            element={
+              <RequireAuth>
+                <Archives />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/Published"
+            element={
+              <RequireAuth>
+                <PublishedFlows />
+              </RequireAuth>
+            }
+          />
 
-          path="/View"
-          element={
-            <RequireAuth>
-              <Archives />
-            </RequireAuth>
-          }
-        />
-         
-        <Route
-          path="/Constructor"
-          element={
-            <RequireAuth>
-              <FlowConstructor />
-            </RequireAuth>
-          }
-        />
-        
+          <Route
+            path="/Constructor"
+            element={
+              <RequireAuth>
+                <FlowConstructor />
+              </RequireAuth>
+            }
+          />
 
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
       </Provider>
     </AuthProvider>
   );
