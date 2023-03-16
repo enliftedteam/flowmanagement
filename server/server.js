@@ -1,7 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser'
 import testRouter from './routes/routes.js';
+import postNewFlow from './routes/postNewFlow.router.js';
 import cors from 'cors';
+import postNewFlow from './routes/postNewFlow.router.js';
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(cors()); // Enable CORS
 
 //this is a test query 
 app.use('/', testRouter);
+app.use('/addNewFlow', postNewFlow);
 
 
 app.listen(3000, () => {
