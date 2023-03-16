@@ -52,68 +52,7 @@ router.get('/latest-versions', async (req, res) => {
     }
 });
 
-// Add a step to a flow
-router.post('/add-step/:flowId', async (req, res) => {
-    const flowId = req.params.flowId;
-    const newStepData = req.body;
-  
-    try {
-      // Begin a transaction
-      await pool.query('BEGIN');
-  
-      // Get the current version of the flow
-      const currentVersionResult = await pool.query(
-        `SELECT current_version_id FROM "flows" WHERE id=$1`,
-        [flowId]
-      );
-      const currentVersionId = currentVersionResult.rows[0].current_version_id;
-  
-      // Create a new version for the flow
-      const newVersionResult = await pool.query(
-        `INSERT INTO "versions" (flow_id, versions_number) VALUES ($1, $2) RETURNING id`,
-        [flowId, currentVersionId + 1]
-      );
-      const newVersionId = newVersionResult.rows[0].id;
-  
-      // Copy all the steps from the current version to the new version
-      await pool.query(
-        `INSERT INTO "version_steps" (versions_id, steps_id)
-         SELECT $1, steps_id
-         FROM "version_steps"
-         WHERE versions_id = $2`,
-        [newVersionId, currentVersionId]
-      );
-  
-      // Add a new step to the steps table
-      const newStepResult = await pool.query(
-        `INSERT INTO "steps" (instructions, content, input_type) VALUES ($1, $2, $3) RETURNING id`,
-        [newStepData.instructions, newStepData.content, newStepData.input_type]
-      );
-      const newStepId = newStepResult.rows[0].id;
-  
-      // Add the new step to the version_steps table
-      await pool.query(
-        `INSERT INTO "version_steps" (versions_id, steps_id) VALUES ($1, $2)`,
-        [newVersionId, newStepId]
-      );
-  
-      // Update the flow's current_version_id to point to the new version
-      await pool.query(
-        `UPDATE "flows" SET current_version_id = $1 WHERE id = $2`,
-        [newVersionId, flowId]
-      );
-  
-      // Commit the transaction
-      await pool.query('COMMIT');
-  
-      res.status(201).json({ message: 'Step added successfully' });
-    } catch (error) {
-      // Rollback the transaction in case of an error
-      await pool.query('ROLLBACK');
-      console.error('Error adding step:', error);
-      res.sendStatus(500);
-    }
-  });
+
 
 export default router;
 
