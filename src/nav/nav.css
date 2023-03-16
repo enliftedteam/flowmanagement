@@ -40,3 +40,31 @@
   .nav-logo img {
     filter: invert(100%);
 }
+
+/* ///////ButtonHover&OnclickFlash//////// */
+/* .nav-save-button:hover {
+  background-color: #2ce2e3;
+}
+
+.nav-publish-button:hover {
+  background-color: #2ce2e3;
+} */
+
+.nav-save-button:active,
+.nav-publish-button:active {
+  animation: flash 0.1s;
+}
+
+
+
+
+
+@keyframes flash {
+  0% {
+    background-color: #169bf6;
+  }
+  100% {
+    background-color:#d716f6;
+  }
+}
+/* ///////ButtonHover&OnclickFlash//////// */

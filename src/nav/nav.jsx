@@ -37,45 +37,62 @@ export default function Nav() {
         />
       </Link>
 
-      <Box sx={{flexGrow: 1, marginRight: 'px'}}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            gap: '10px',
-          }}>
-          {isLoggedIn ? (
-            <button
-              style={{
-                padding: '10px 20px',
-                borderRadius: '20px',
-                background: '#151D92',
-                color: '#fff',
-                border: 'none',
-              }}>
-              Save
-            </button>
-          ) : (
-            <></>
-          )}
-          {isLoggedIn ? (
-            <button
-              style={{
-                padding: '10px 20px',
-                borderRadius: '20px',
-                background: '#008CBA',
-                color: '#fff',
-                border: 'none',
-              }}>
-              Publish
-            </button>
-          ) : (
-            <h3></h3>
-          )}
-        </div>
-      </Box>
+{/* ////////////////Save&PublishButton////////////// */}
+<Box sx={{flexGrow: 15, marginLeft: '-200px', marginRight:'-20px'}}>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      gap: '10px',
+    }}>
+    {isLoggedIn ? (
+      <button
+        className="nav-save-button"
+        onMouseOver={(e) =>
+          (e.currentTarget.style.backgroundColor = "#3530e9")
+        }
+        onMouseOut={(e) =>
+          (e.currentTarget.style.backgroundColor = "#151D92")
+        }
+        style={{
+          padding: '10px 20px',
+          borderRadius: '20px',
+          background: '#151D92',
+          color: '#fff',
+          border: 'none',
+        }}>
+        Save
+      </button>
+    ) : (
+      <></>
+    )}
+    {isLoggedIn ? (
+      <button
+        className="nav-publish-button"
+        onMouseOver={(e) =>
+          (e.currentTarget.style.backgroundColor = "#3530e9")
+        }
+        onMouseOut={(e) =>
+          (e.currentTarget.style.backgroundColor = "#008CBA")
+        }
+        style={{
+          padding: '10px 20px',
+          borderRadius: '20px',
+          background: '#008CBA',
+          color: '#fff',
+          border: 'none',
+        }}>
+        Publish
+      </button>
+    ) : (
+      <h3></h3>
+    )}
+  </div>
+</Box>
+
+{/* ////////////////Save&PublishButton////////////// */}
 
       <Box sx={{flexGrow: 1}}></Box>
       <IconButton
