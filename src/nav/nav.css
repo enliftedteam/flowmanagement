@@ -24,8 +24,8 @@
   outline: 0;
  }
  .navLink:hover {
-  background: rgb(87,23,157);
-  background: linear-gradient(90deg, rgba(87,23,157,1) 26%, rgba(110,15,145,1) 84%);
+  background: #169BF6;
+  
  }
  .nav .nav-logo{
   margin-left: 30px;
