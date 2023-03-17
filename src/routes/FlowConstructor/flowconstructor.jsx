@@ -48,7 +48,7 @@ export default function FlowConstructor() {
         setBody={setBody}
       />
 
-      <StepBar />
+      <AddStep />
     </Box>
     </>
   )
