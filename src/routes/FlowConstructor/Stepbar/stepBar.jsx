@@ -28,7 +28,7 @@ import TextFieldsIcon from '@mui/icons-material/TextFields';
 import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
-import AddStep from './addstep';
+// import AddStep from './addstep';
 
 const drawerWidth = 240;
 const options = [
@@ -117,7 +117,7 @@ export default function StepBar() {
         </DrawerHeader>
 
         <Divider />
-        <AddStep/>
+        {/* <AddStep/> */}
      
       </Drawer>
 
