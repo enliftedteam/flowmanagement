@@ -2,12 +2,19 @@ import React from 'react'
 
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -15,146 +22,153 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-import TextField from '@mui/material/TextField';
+import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
+
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
+import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
+
+
+const drawerWidth = 240;
+const options = [
+                  {
+                    Id: 1,
+                    Name: 'Add Step',
+                    Icon: <TextSnippetOutlinedIcon fontSize ='large'/>
+                  }
+                ]
+
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex',
+}));
+
+
 
 export default function AddStep() {
-
-  // State  of  the text and the associated inputs are stored in a reducer.
-  // on click of add new step, state of previous step is pushed to reducer.
-  // Then the state of inputs is cleared from the dom,  allowing for a new step.
-  // Clicking on a previous step calls for the state at the end of the array.
-  
-  // Context, short, and long will need their options
-
-  // State will represent the type of input we are storing.
-  const [inputSave, setInput] = useState('');
-  // State will represent the text that we are inputing.
-  const [flowText, setFlowText] = useState('');
-  // Below is a test for the input appending
-  const [inputFileds, setInputFields] = useState([
-    { content: '' }
-  ])
-  const addInput = ( index,  event ) => {
-    let data = [...inputFileds, {content: ''}]
-    setInputFields(data)
-
-  }
-  
-  const reducerTest = useSelector((store) => store.flowStepReducer)
+  const theme = useTheme();
   const dispatch = useDispatch();
-  // State will also have to represent the previous flow steps to be called on when moving backwards
-  // This will work better in a reducer,  but state for  demo:
-  const [demo, setDemo] = useState([
-    {id: 1, title: 'Flow One'},
-    {id: 2, title: 'Flow Two'},
-    {id: 3, title: 'Flow Three'},
-    {id: 4, title: 'Flow Four'}
-  ]);
-  
-  useEffect(() => {
-    dispatch({ 
-      type: 'ADD_FLOW_REDUCER',
-      payload: 'hello'
-      });
-  }, []);
-  // This is the function that adds the current flow to the demo state
-  const  addFlowStep = () => {
-    setDemo([...demo,  {id: 6, title: 'Flow Six'}])
-  }
 
-  // This is to return to previous flow steps:
-  const returnToFlow = () => {
-    // This will  have to be built out once We have a surface to put the object.
-  }
+  const [open, setOpen] = React.useState(false);
 
-  // Everything Bellow this is boiler plate for the MUI Component. 
-  const [state, setState] = React.useState({
-    right: false,
-  });
+  const reducerTest = useSelector((store) => store.flowStepReducer)
+  const words = useSelector(store => store.wysiwygReducer)
+  console.log(`This is from addStep:`, words);
+  // This is where we build the object to send to the reducer.
+  const [steps, setsteps] = useState([])
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  
+  const returnToFlow = (id) => {
+    
+    let indexSearch = id - 1
+    console.log(indexSearch);
 
+    dispatch({
+      type: 'FLOW_TEXT_SET',
+      payload: steps[indexSearch].steps.instructions
+    });
+
+  }
+
+  
+  const addNewStep = () => {
+    let newStepId = steps.length+1
+    let flowStepCounter = steps.length+1
+    setsteps([...steps, 
+      {
+        id: newStepId++ , 
+        title: `Flow Step ${flowStepCounter++}`,
+        steps:{
+          title: 'This is It', //Plug in from builder
+          instructions: words,  //Plug in from builder
+          content: 'input 1', //Plug in from builder
+          input_type: 2 //Plug in from builder
+        }
+      }
+    ])
+    dispatch({ type: 'GET_FLOW_EMPTY', payload: steps }); 
+    dispatch({ type: 'CLEAR_TEXT_SET' }); 
+  }
 
   return (
-    <>
-  <Box>
-        <List>
-          {demo.map((item) => (
-            <ListItem key={item.id} disablePadding>
-              <ListItemButton onClick={returnToFlow} >
-                <ListItemText primary={item.title} />
+    <Box >
+
+    <Toolbar>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        edge="end"
+        sx={{ mr: 2, ...(open && { display: 'none' }) }}
+      >
+        <LayersOutlinedIcon fontSize='large' />
+      </IconButton>
+    </Toolbar>
+
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+        },
+      }}
+      variant="persistent"
+      anchor="right"
+      open={open}
+    >
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          <ChevronLeftIcon />
+        </IconButton>
+        <Typography>
+          Step Builder
+        </Typography>
+      </DrawerHeader>
+
+      <Divider />
+
+      <List>
+          {steps.map((step) => (
+            <ListItem key={step.id} disablePadding>
+              <ListItemButton onClick={() => returnToFlow(step.id)} >
+                <ListItemText primary={step.title} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
+
       <Divider />
-      <List>
-        {['Add Flow Step'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton onClick={addFlowStep}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      </Box>
-    </>
+
+        <List>
+          {options.map((key) => (
+            <ListItem key={key.Id} disablePadding>
+              <ListItemButton onClick={addNewStep}>
+                <ListItemIcon>
+                  {key.Icon}
+                </ListItemIcon>
+                <ListItemText primary={key.Name} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+
+  </Box>
   )
 }
 
-
-
-
-
-
-    // <form>
-    //   {inputFileds.map((input,  index) => {
-    //     return ( 
-    //       <div key={index}>
-    //         <TextField
-    //           id="outlined-multiline-static"
-    //           label="Multiline"
-    //           multiline
-    //           rows={4}
-    //           defaultValue="Default Value"
-    //         />            
-    //       </div>
-    //     )
-    //   })}
-    // </form>
-    // <button onClick={addInput}>Click Me</button>
-
-    // this goes into the flow constructor when ready
-
-
-
-
-//     const addStepToFlow = async (flowId) => {
-//       try {
-//         const newStepData = {
-//           instructions: 'New instruction',
-//           content: 'New content',
-//           input_type: 1, // Replace with the desired input_type ID
-//         };
-    
-//         const response = await axios.post(`http://localhost:3000/add-step/${flowId}`, newStepData);
-//         console.log(response.data);
-//       } catch (error) {
-//         console.error('Error adding step to flow:', error);
-//       }
-//     };
-// <button onClick={() => addStepToFlow(2)}>Add Step to Flow</button>
