@@ -9,7 +9,7 @@ import InputControl from './Toolbar/inputcontrol'
 import ToolBar from './Toolbar/toolBar'
 import TextEnter from './WYSIWYG/textEnter'
 import View from './WYSIWYG/view'
-
+import Nav from '../../nav/nav'
 
 export default function FlowConstructor() {
   const store = useReduxStore();
@@ -24,6 +24,9 @@ export default function FlowConstructor() {
 
 
   return (
+    <>
+    <Nav className="shong" style={{ display: 'block' }} />
+
     <Box display='flex' justifyContent='space-between' >
       <ToolBar />
       { option == 1 &&
@@ -47,5 +50,6 @@ export default function FlowConstructor() {
 
       <AddStep />
     </Box>
+    </>
   )
 }

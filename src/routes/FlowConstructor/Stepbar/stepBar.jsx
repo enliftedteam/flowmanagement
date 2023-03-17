@@ -100,6 +100,7 @@ export default function StepBar() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            top: '100px', // Adjust the 'top' property as needed
           },
         }}
         // variant="persistent"
