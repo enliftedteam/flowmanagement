@@ -1,47 +1,4 @@
 .nav {
-
-    /* flex box layout */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* margin: 0 0 30px; */
-    background: rgb(15,25,145);
-    background: linear-gradient(90deg, rgba(15,25,145,1) 14%, rgba(80,23,157,1) 28%, rgba(97,22,164,1) 37%, rgba(140,19,189,1) 55%, rgba(177,20,207,1) 72%, rgba(142,21,224,1) 85%, rgba(228,22,232,0.9808517156862745) 99%);
-    overflow: hidden;
-    /* border-radius: 15px; */
-  }
-  .nav a {
-    text-decoration: none;
-  }
-  .nav-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #F2F2F2;
-    padding-left: 10px;
-    margin: 0;
-  }
-  .navLink {
-    display: inline-block;
-    color: #F2F2F2;
-    background-color: transparent;
-    text-align: center;
-    padding: 24px 10px;
-    text-decoration: none;
-    font-size: 15px;
-    /* these last two make the logout button in
-    the nav bar look like another link */
-    border: none;
-    cursor: pointer;
-    outline: 0;
-  }
-  .navLink:hover {
-    background: rgb(87,23,157);
-    background: linear-gradient(90deg, rgba(87,23,157,1) 26%, rgba(110,15,145,1) 84%);
-  }
-  .nav-logo img {
-    filter: invert(100%);
-}
-=======
   /* flex box layout */
   display: flex;
   justify-content: space-between;
@@ -73,4 +30,3 @@
  .nav .nav-logo{
   margin-left: 30px;
  }
-
