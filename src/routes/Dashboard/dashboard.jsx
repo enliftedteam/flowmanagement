@@ -34,6 +34,8 @@ export default function Dashboard() {
   }
 
   return (
+  
+    
     <Box m='20px'>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
         <h1> welcome {auth.user.username}</h1>
@@ -143,6 +145,7 @@ export default function Dashboard() {
 
       </Box>
     </Box>
+    
 
   );
 }

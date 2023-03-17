@@ -1,4 +1,4 @@
-const flowStepReducer = (state = ['This'], action) => {
+const flowStepReducer = (state = [''], action) => {
     switch(action.type){
         case 'GET_FLOW_EMPTY':
             console.log('fuck1')
