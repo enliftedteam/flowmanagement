@@ -74,6 +74,7 @@ export default function ToolBar() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            top: '100px'
           },
         }}
         variant="persistent"
