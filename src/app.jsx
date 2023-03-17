@@ -16,12 +16,14 @@ import Dashboard from './routes/Dashboard/dashboard';
 import FlowConstructor from './routes/FlowConstructor/flowconstructor';
 import Nav from './nav/nav';
 import {LoginPage} from './routes/login';
-import PublishedFlows from './routes/PublishedFlows/PublishedFlows';
+import PublishedFlows from './routes/PublishedFlows/publishedflows';
 
 export default function App() {
   return (
     <AuthProvider>
+
       <Nav />
+
       <Provider store={store}>
         <Routes>
           <Route
