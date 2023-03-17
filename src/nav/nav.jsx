@@ -11,16 +11,22 @@ import MenuItem from '@mui/material/MenuItem';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useLocation} from 'react-router-dom'
+import {useAuth} from '../auth';
 //menu drop down
 
 export default function Nav({showButtons = false}) {
  const [anchorEl, setAnchorEl] = useState(null);
+ const auth = useAuth();
  const handleClick = event => {
   setAnchorEl(event.currentTarget);
  };
  const handleClose = () => {
   setAnchorEl(null);
  };
+
+ function handleSignOut() {
+  auth.signout(() => {});
+}
  //this is to make the save & publish button render
  //base off use is logged in or not.
  //we will need to hook this up to the login component.
@@ -127,13 +133,13 @@ export default function Nav({showButtons = false}) {
       Contact Us
      </Link>
     </MenuItem>
-    <MenuItem onClick={handleClose}>
+    <MenuItem onClick={handleSignOut}>
      <HelpOutlineIcon sx={{mr: 1}} />
      <Link
-      to="about"
+      
       className="navLink"
       style={{color: 'black', width: 80, maxWidth: '100%'}}>
-      About Us
+      Log Out
      </Link>
     </MenuItem>
    </Menu>
