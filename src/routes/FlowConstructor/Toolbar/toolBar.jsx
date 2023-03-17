@@ -1,8 +1,7 @@
-
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { styled, useTheme } from '@mui/material/styles';
+import React from 'react';
+import {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {styled, useTheme} from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -17,33 +16,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-// import { options } from '../../../Data';
+import {options} from '../../../Data';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
-import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
+
 const drawerWidth = 240;
 
-const options = [
-  {
-    Id: 1,
-    Name: 'Text Box',
-    Icon: <TextSnippetOutlinedIcon fontSize="large" />,
-  },
-  {
-    Id: 1,
-    Name: 'Text Input',
-    Icon: <AssignmentOutlinedIcon fontSize="large" />,
-  },
-  {
-    Id: 1,
-    Name: 'Word Input',
-    Icon: <TextsmsOutlinedIcon fontSize="large" />,
-  },
-];
-
 const DrawerHeader = styled('div')(({theme}) => ({
-
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
@@ -52,19 +30,17 @@ const DrawerHeader = styled('div')(({theme}) => ({
   justifyContent: 'flex-end',
 }));
 
-
 export default function ToolBar() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
-
-  const handleClicked = (event) => {
+  const handleClicked = event => {
     dispatch({
       type: 'SET_OPTIONS_REDUCER',
-      payload: event
+      payload: event,
     });
-  }
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -81,8 +57,7 @@ export default function ToolBar() {
           aria-label="open drawer"
           onClick={handleDrawerOpen}
           edge="start"
-          sx={{ mr: 2, ...(open && { display: 'none' }) }}
-        >
+          sx={{mr: 2, ...(open && {display: 'none'})}}>
           <TextFieldsIcon fontSize="large" />
         </IconButton>
       </Toolbar>
@@ -96,19 +71,17 @@ export default function ToolBar() {
             width: drawerWidth,
             boxSizing: 'border-box',
 
-            top: '100px'
-
+            top: '100px',
           },
         }}
         variant="persistent"
         anchor="left"
-        open={open}
-      >
+        open={open}>
         <DrawerHeader>
           <Typography>Tool Bar</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
+              <ChevronRightIcon />
             ) : (
               <ChevronRightIcon />
             )}
@@ -118,20 +91,15 @@ export default function ToolBar() {
         <Divider />
 
         <List>
-          {options.map((opt) => (
+          {options.map(opt => (
             <ListItem key={opt.Id} onClick={(e) => {handleClicked(opt.Id)}} disablePadding>
-              <ListItemButton>
-
-                <ListItemIcon>{key.Icon}</ListItemIcon>
-                <ListItemText primary={key.Name} />
-
-                <ListItemIcon>
-                  {opt.Icon}
-                </ListItemIcon>
-                <ListItemText primary={opt.Name} />
-
-              </ListItemButton>
-            </ListItem>
+            <ListItemButton>
+              <ListItemIcon>
+                {opt.Icon}
+              </ListItemIcon>
+              <ListItemText primary={opt.Name} />
+            </ListItemButton>
+          </ListItem>
           ))}
         </List>
       </Drawer>
