@@ -2,7 +2,6 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {styled, useTheme} from '@mui/material/styles';
-
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,9 +17,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import {options} from '../../../Data';
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-
 const drawerWidth = 240;
-
 const DrawerHeader = styled('div')(({theme}) => ({
   display: 'flex',
   alignItems: 'center',
@@ -29,26 +26,22 @@ const DrawerHeader = styled('div')(({theme}) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-
 export default function ToolBar() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-
   const handleClicked = event => {
     dispatch({
       type: 'SET_OPTIONS_REDUCER',
       payload: event,
     });
   };
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   return (
     <Box>
       <Toolbar>
@@ -61,7 +54,6 @@ export default function ToolBar() {
           <TextFieldsIcon fontSize="large" />
         </IconButton>
       </Toolbar>
-
       <Drawer
         className="drawer-back"
         sx={{
@@ -70,7 +62,6 @@ export default function ToolBar() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-
             top: '100px',
           },
         }}
@@ -81,15 +72,13 @@ export default function ToolBar() {
           <Typography>Tool Bar</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? (
-              <ChevronRightIcon />
+              <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
             )}
           </IconButton>
         </DrawerHeader>
-
         <Divider />
-
         <List>
           {options.map(opt => (
             <ListItem key={opt.Id} onClick={(e) => {handleClicked(opt.Id)}} disablePadding>
