@@ -26,7 +26,7 @@ export default function View() {
       >
 
         {/* POSITION 1 */}
-        <Box>
+        <Box marginTop='50px'>
 
           { option == 1 &&
           <Typography textAlign={'left'} m='50px 30px' color='white' >{words.replace(/<[^>]*>?/gm, '')}</Typography>
@@ -36,6 +36,7 @@ export default function View() {
           { option == 2 &&
           <textarea
             style={{
+              m:'50px 50px',
               width: '270px',
               height: '120px',
               padding: '12px 20px',
@@ -48,16 +49,18 @@ export default function View() {
             placeholder='text goes here'
           />
           }
+
+
         </Box>
 
 
         {/* POSITION 2 */}
         <Box>
-          { option == 1 &&
+          {/* { option == 1 &&
           <Typography textAlign={'left'} m='50px 30px' color='white' >{words.replace(/<[^>]*>?/gm, '')}</Typography>
-          }
+          } */}
 
-          { option == 2 &&
+          {/* { option == 2 &&
           <textarea
             style={{
               width: '270px',
@@ -71,17 +74,17 @@ export default function View() {
             }}
             placeholder='text goes here'
           />
-          }
+          } */}
         </Box>
 
 
         {/* POSITION 3 */}
         <Box>
-          { option == 1 &&
+          {/* { option == 1 &&
           <Typography textAlign={'left'} m='50px 30px' color='white' >{words.replace(/<[^>]*>?/gm, '')}</Typography>
-          }
+          } */}
 
-          { option == 2 &&
+          {/* { option == 2 &&
           <textarea
             style={{
               width: '270px',
@@ -95,7 +98,7 @@ export default function View() {
             }}
             placeholder='text goes here'
           />
-          }
+          } */}
         </Box>
 
 
