@@ -95,7 +95,9 @@ export default function ToolBar() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            top: '100px', // Adjust the 'top' property as needed
+
+            top: '100px'
+
           },
         }}
         variant="persistent"

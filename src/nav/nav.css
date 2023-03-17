@@ -1,39 +1,32 @@
 .nav {
-    /* flex box layout */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #169bf6;
-    margin-top: -10px;
-    margin-left: -10px;
-    margin-right: -10px;
-    height: 100px;
-  }
-
-
-  .navLink {
-    display: inline-block;
-    color: #F2F2F2;
-    background-color: transparent;
-    text-align: center;
-    padding: 24px 10px;
-    text-decoration: none;
-    font-size: 15px;
-    /* these last two make the logout button in
-    the nav bar look like another link */
-    border: none;
-    cursor: pointer;
-    outline: 0;
-  }
-  .navLink:hover {
-    background: rgb(87,23,157);
-    background: linear-gradient(90deg, rgba(87,23,157,1) 26%, rgba(110,15,145,1) 84%);
-  }
-
-  .nav .nav-logo{
-    margin-left: 30px;
-  }
-
-
-
-
+  /* flex box layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #169BF6;
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  height: 100px;
+ }
+ .navLink {
+  display: inline-block;
+  color: #F2F2F2;
+  background-color: transparent;
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+  /* these last two make the logout button in
+  the nav bar look like another link */
+  border: none;
+  cursor: pointer;
+  outline: 0;
+ }
+ .navLink:hover {
+  background: rgb(87,23,157);
+  background: linear-gradient(90deg, rgba(87,23,157,1) 26%, rgba(110,15,145,1) 84%);
+ }
+ .nav .nav-logo{
+  margin-left: 30px;
+ }

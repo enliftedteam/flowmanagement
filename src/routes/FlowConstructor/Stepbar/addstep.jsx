@@ -73,10 +73,9 @@ export default function AddStep() {
   };
   
   const returnToFlow = (id) => {
-    
+    // take the id, subtract it by one, and then you get the index
     let indexSearch = id - 1
-    console.log(indexSearch);
-
+    // Then you use it to call on the index that the right instructions are at. 
     dispatch({
       type: 'FLOW_TEXT_SET',
       payload: steps[indexSearch].steps.instructions
@@ -94,7 +93,7 @@ export default function AddStep() {
         title: `Flow Step ${flowStepCounter++}`,
         steps:{
           title: 'This is It', //Plug in from builder
-          instructions: words,  //Plug in from builder
+          instructions: words, 
           content: 'input 1', //Plug in from builder
           input_type: 2 //Plug in from builder
         }
@@ -126,6 +125,7 @@ export default function AddStep() {
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
+          top: '100px'
         },
       }}
       variant="persistent"
