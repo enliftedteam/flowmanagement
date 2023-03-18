@@ -7,6 +7,7 @@ import AddStep from './Stepbar/addstep'
 import StepBar from './Stepbar/stepBar'
 import InputControl from './Toolbar/inputcontrol'
 import ToolBar from './Toolbar/toolBar'
+import InputEnter from './WYSIWYG/inputEnter'
 import TextEnter from './WYSIWYG/textEnter'
 import View from './WYSIWYG/view'
 
@@ -37,7 +38,7 @@ export default function FlowConstructor() {
       }
 
       { option == 2 &&
-      <InputControl
+      <InputEnter
         body={body}
         setBody={setBody}
       />
