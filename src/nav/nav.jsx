@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './nav.css';
 import HomeIcon from '@mui/icons-material/Home';
+import { useAuth } from '../auth';
 // MUI imports below
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -11,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useLocation} from 'react-router-dom'
+import LogoutIcon from '@mui/icons-material/Logout';
 //menu drop down
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -60,6 +62,11 @@ export default function Nav({showButtons = false}) {
    setOpen(false);
  };
 
+ const auth = useAuth();
+
+  function handleSignOut() {
+    auth.signout(() => {});
+  }
 
  return (
   <div className="nav">
@@ -189,12 +196,12 @@ export default function Nav({showButtons = false}) {
      </Link>
     </MenuItem>
     <MenuItem onClick={handleClose}>
-     <HelpOutlineIcon sx={{mr: 1}} />
+     <LogoutIcon sx={{mr: 1}} onClick={handleSignOut}/>
      <Link
-      to="about"
+      to="login"
       className="navLink"
       style={{color: 'black', width: 80, maxWidth: '100%'}}>
-      About Us
+      Log Out
      </Link>
     </MenuItem>
    </Menu>
