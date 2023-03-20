@@ -106,17 +106,18 @@ export default function AddStep() {
   return (
     <Box >
 
-    <Toolbar>
-      <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        onClick={handleDrawerOpen}
-        edge="end"
-        sx={{ mr: 2, ...(open && { display: 'none' }) }}
-      >
-        <LayersOutlinedIcon fontSize='large' />
-      </IconButton>
-    </Toolbar>
+<Toolbar>
+        <Box sx={{ flexGrow: 1 }}></Box>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="end"
+          sx={{ mr: 2, ...(open && { display: 'none' }) }}
+        >
+          <LayersOutlinedIcon fontSize="large" />
+        </IconButton>
+      </Toolbar>
 
     <Drawer
       sx={{
