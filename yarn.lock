@@ -1137,9 +1137,6 @@
     "is-date-object" "^1.0.1"
     "is-symbol" "^1.0.2"
 
-"esbuild-darwin-64@0.15.18":
-  "version" "0.15.18"
-
 "esbuild@^0.15.9":
   "version" "0.15.18"
   optionalDependencies:

@@ -103,7 +103,7 @@ export default function Nav({showButtons = false}) {
      }}>
      {isLoggedIn && location.pathname === '/Constructor' ? (
    <>
-    <button
+    {/* <button
      className="nav-save-button"
      onMouseOver={e =>
       (e.currentTarget.style.backgroundColor = '#3530E9')
@@ -120,19 +120,19 @@ export default function Nav({showButtons = false}) {
      }}
     >
      Save
-    </button>
+    </button> */}
     <button
      className="nav-publish-button"
      onMouseOver={e =>
       (e.currentTarget.style.backgroundColor = '#3530E9')
      }
      onMouseOut={e =>
-      (e.currentTarget.style.backgroundColor = '#008CBA')
+      (e.currentTarget.style.backgroundColor = '#151D92')
      }
      style={{
       padding: '10px 20px',
       borderRadius: '20px',
-      background: '#008CBA',
+      background: '#151D92',
       color: '#fff',
       border: 'none',
      }}

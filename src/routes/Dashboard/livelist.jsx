@@ -34,7 +34,9 @@ export default function LiveList() {
     
         fetchData();
       }, []);
-    const dataToShow = data?.slice(Math.min(data.length-10, 0))
+    const dataToShow = data?.slice(-10)
+    console.log(data);
+    console.log(dataToShow);
     return (
         <Box alignItems='stack'>
             <Typography sx={{ color: '#7F95FA' }} variant='h5'>Flows</Typography>
