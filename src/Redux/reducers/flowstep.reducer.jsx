@@ -1,10 +1,10 @@
 const flowStepReducer = (state = [''], action) => {
     switch(action.type){
         case 'GET_FLOW_EMPTY':
-            console.log('fuck1')
+            console.log('flow empty')
             return[state]
         case 'ADD_FLOW_REDUCER':
-            console.log('fuck2')
+            console.log('flow full')
             return [...state, action.payload];
         default :
             return state

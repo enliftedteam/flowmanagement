@@ -106,7 +106,7 @@ export default function Dashboard() {
         onClick={handleClickLive}
           gridColumn='span 11'
           gridRow='span 10'
-          backgroundColor='#ffffff'
+          backgroundColor='#6B85FB'
           display='flex'
           height='flex'
           p='0 30px'
@@ -127,7 +127,7 @@ export default function Dashboard() {
          onClick={handleClickArchive}
           gridColumn='span 11'
           gridRow='span 10'
-          backgroundColor='#6B85FB'
+          backgroundColor='#ffffff'
           display='flex'
           height='flex'
           p='0 30px'

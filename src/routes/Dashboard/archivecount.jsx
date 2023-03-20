@@ -49,7 +49,7 @@ export default function ArchiveCount() {
           <Typography
           variant='h10'
           fontWeight='medium'
-          color='White'
+          color='Black'
           >
             Archive Flows
           </Typography>
@@ -60,7 +60,7 @@ export default function ArchiveCount() {
           <Typography
           variant='h4'
           fontWeight='bold'
-          color='White'
+          color='Black'
           >
             {archiveCount()}
           </Typography>

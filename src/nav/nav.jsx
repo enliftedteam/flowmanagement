@@ -116,12 +116,12 @@ export default function Nav({showButtons = false}) {
       (e.currentTarget.style.backgroundColor = '#3530E9')
      }
      onMouseOut={e =>
-      (e.currentTarget.style.backgroundColor = '#008CBA')
+      (e.currentTarget.style.backgroundColor = '#151D92')
      }
      style={{
       padding: '10px 20px',
       borderRadius: '20px',
-      background: '#008CBA',
+      background: '#151D92',
       color: '#fff',
       border: 'none',
      }}
@@ -196,11 +196,12 @@ export default function Nav({showButtons = false}) {
      </Link>
     </MenuItem>
     <MenuItem onClick={handleClose}>
-     <LogoutIcon sx={{mr: 1}} onClick={handleSignOut}/>
+     <LogoutIcon sx={{mr: 1}} />
      <Link
-      to="login"
+      to="/login"
       className="navLink"
-      style={{color: 'black', width: 80, maxWidth: '100%'}}>
+      style={{color: 'black', width: 80, maxWidth: '100%'}}
+      onClick={handleSignOut}>
       Log Out
      </Link>
     </MenuItem>
