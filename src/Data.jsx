@@ -89,12 +89,12 @@ const options = [
                   Id: 2,
                   Name: 'Text Input',
                   Icon: <AssignmentOutlinedIcon fontSize ='large'/>
-                },
-                {
-                  Id: 3,
-                  Name: 'Word Input',
-                  Icon: <TextsmsOutlinedIcon fontSize ='large'/>
                 }
+                // {
+                //   Id: 3,
+                //   Name: 'Word Input',
+                //   Icon: <TextsmsOutlinedIcon fontSize ='large'/>
+                // }
                 ]
 
 export {liveFlows, options};
