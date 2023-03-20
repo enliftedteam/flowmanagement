@@ -5,15 +5,15 @@ const postNewFlow = express.Router();
 
 postNewFlow.post('/', async ( req, res ) => {
     const newFlowData = req.body;
-    const newStepArray = req.body.steps;
+    const newStepArray = req.body.steps[0];
     console.log(newStepArray);
     // This will have an array of steps in that we have to loop through
     try {
       // Begin a transaction
       await pool.query('BEGIN');
         //Start with building the flow column, this gives us the id.
-        const newFlow = await pool.query(`INSERT INTO "flows" (title)
-                                            VALUES ($1)
+        const newFlow = await pool.query(`INSERT INTO "flows" (title, is_published)
+                                            VALUES ($1, true)
                                                 RETURNING id`, [newFlowData.title]);      
         const newFlowId = newFlow.rows[0].id;
 
@@ -27,10 +27,11 @@ postNewFlow.post('/', async ( req, res ) => {
 
         //Then we loop through the newStepArray, and add the steps one at a time.  
             for (const step of newStepArray) {
+              console.log('This is the step loop:', step);
                 //  Start with the first step in the array and pupulate the step row with the first object
                 const newStepResult = await pool.query(`INSERT INTO "steps" (instructions, content) 
                                                             VALUES ($1, $2) 
-                                                            RETURNING id`, [step.instructions, step.content]);  
+                                                            RETURNING id`, [step.steps.instructions, step.steps.content]);  
                 // Return the id of that newly created object
                 const newStepId = newStepResult.rows[0].id;
                                                 

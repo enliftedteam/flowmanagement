@@ -34,12 +34,12 @@ export default function LiveList() {
     
         fetchData();
       }, []);
-
+    const dataToShow = data?.slice(Math.min(data.length-10, 0))
     return (
         <Box alignItems='stack'>
             <Typography sx={{ color: '#7F95FA' }} variant='h5'>Flows</Typography>
             <List sx={{ width: '100%' }}>
-                {data && data.map(flow => (
+                {dataToShow && dataToShow.slice(0).reverse().map(flow => (
                 <ListItem 
                 key={flow.id}
                 sx={{margin: '20px 0'}}
@@ -48,7 +48,7 @@ export default function LiveList() {
                     
                     {flow.is_published ? 
                         <BlurCircularIcon
-                            sx={{ color: '#7F95FA' }}
+                            sx={{ color: '#0bda51' }}
                             fontSize='small'
                         />
                         :

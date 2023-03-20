@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
 import './nav.css';
 import HomeIcon from '@mui/icons-material/Home';
-import { useAuth } from '../auth';
 // MUI imports below
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -12,7 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import {useLocation} from 'react-router-dom'
-import LogoutIcon from '@mui/icons-material/Logout';
 //menu drop down
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -22,6 +21,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle'
 import Slide from '@mui/material/Slide';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 // This is for the sliding effect. 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -42,31 +43,41 @@ export default function Nav({showButtons = false}) {
  const isLoggedIn = true;
  const location = useLocation();
 
- //  What follows is for the dialogue box
- const [open, setOpen] = useState(false);
-
- const handlePublishFlow = () => {
+ //  <----------- What follows is for the Publish dialogue box ----------->
+  const [open, setOpen] = useState(false);
+  const [titleInput, setTitleInput] = useState('')
+//  <----------- Reducer For the Steps ----------->
+ const stepsToPublish = useSelector((store) => store.flowStepReducer);
+//  const stepsIsolated = stepsToPublish?.map(item => item);
+ console.log(stepsToPublish);
+//  
+ 
+ console.log(titleInput);
+ const openPublishDialog = () => {
+  // Opens the Dialog to begin the Publish Process
   setOpen(true)
  }
 
- const handleClickOpen = () => {
-  console.log(open);
-   setOpen(true);
+ const handleFlowPublish = () => {
+  const title = titleInput
+  console.log(title);
+  axios.post('http://localhost:3000/addNewFlow',
+    {
+      title,
+      steps: stepsToPublish
+    }).then(response => {
+      // send a dispatch that clears the reducer.
+    }).catch(error => {
+      console.log('Error in POST client', error)
+    })
+  setOpen(false);
  };
 
  const handleDialogClose = () => {
-  //  Make this for publishing flows only. 
-  // Import reducer here. 
-  // put the array in an object that I can send to the server.
    console.log(open);
    setOpen(false);
  };
 
- const auth = useAuth();
-
-  function handleSignOut() {
-    auth.signout(() => {});
-  }
 
  return (
   <div className="nav">
@@ -116,16 +127,16 @@ export default function Nav({showButtons = false}) {
       (e.currentTarget.style.backgroundColor = '#3530E9')
      }
      onMouseOut={e =>
-      (e.currentTarget.style.backgroundColor = '#151D92')
+      (e.currentTarget.style.backgroundColor = '#008CBA')
      }
      style={{
       padding: '10px 20px',
       borderRadius: '20px',
-      background: '#151D92',
+      background: '#008CBA',
       color: '#fff',
       border: 'none',
      }}
-     onClick={handlePublishFlow}
+     onClick={openPublishDialog}
     >
      Publish
     </button>
@@ -136,7 +147,7 @@ export default function Nav({showButtons = false}) {
         keepMounted 
         aria-describedby="alert-dialog-slide-description" >
             
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Submit Flow?</DialogTitle>
         <DialogContent>
           <DialogContentText  id="alert-dialog-slide-description">
             Title Flow before Submission
@@ -149,11 +160,12 @@ export default function Nav({showButtons = false}) {
             type="email"
             fullWidth
             variant="standard"
+            onChange={(event) => setTitleInput(event.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose}>Cancel</Button>
-          <Button onClick={handleDialogClose}>Publish</Button>
+          <Button onClick={handleFlowPublish}>Publish</Button>
         </DialogActions>
       </Dialog>
  </div>
@@ -196,19 +208,19 @@ export default function Nav({showButtons = false}) {
      </Link>
     </MenuItem>
     <MenuItem onClick={handleClose}>
-     <LogoutIcon sx={{mr: 1}} />
+     <HelpOutlineIcon sx={{mr: 1}} />
      <Link
-      to="/login"
+      to="about"
       className="navLink"
-      style={{color: 'black', width: 80, maxWidth: '100%'}}
-      onClick={handleSignOut}>
-      Log Out
+      style={{color: 'black', width: 80, maxWidth: '100%'}}>
+      About Us
      </Link>
     </MenuItem>
    </Menu>
   </div>
  );
 }
+
 
 
 

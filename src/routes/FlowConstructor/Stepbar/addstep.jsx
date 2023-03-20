@@ -84,24 +84,35 @@ export default function AddStep() {
   }
 
   
-  const addNewStep = () => {
-    let newStepId = steps.length+1
-    let flowStepCounter = steps.length+1
-    setsteps([...steps, 
-      {
+  const addNewStep = (event) => {
+    
+    event.preventDefault();
+  
+    setsteps(steps => {
+      let newStepId = steps.length + 1;
+      let flowStepCounter = steps.length + 1;
+      const newStep = {
         id: newStepId++ , 
         title: `Flow Step ${flowStepCounter++}`,
         steps:{
-          title: 'This is It', //Plug in from builder
+          title: 'This is It', 
           instructions: words, 
-          content: 'input 1', //Plug in from builder
-          input_type: 2 //Plug in from builder
+          content: 'input 1', 
+          input_type: 2 
         }
-      }
-    ])
-    dispatch({ type: 'GET_FLOW_EMPTY', payload: steps }); 
-    dispatch({ type: 'CLEAR_TEXT_SET' }); 
-  }
+      };
+      const newSteps = [...steps, newStep];
+  
+      dispatch({
+        type: 'ADD_FLOW_REDUCER',
+        payload: newSteps
+      });
+  
+      return newSteps;
+      
+    });
+
+  };
 
   return (
     <Box >
